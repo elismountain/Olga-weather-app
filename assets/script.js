@@ -65,13 +65,16 @@ function displayForecast(data) {
   }
 }
 
+// Event listener on search button
+
 $('#search-button').on('click', function(e) {
   e.preventDefault();
-
   const search = $('#search-input').val().trim();
-  $('#today').attr('class', 'mt-3');
-  fetchWeather(search);
-})
+  if (search) {
+    $('#today').attr('class', 'mt-3');
+    fetchWeather(search);  
+  };
+});
 
 
 
@@ -110,12 +113,6 @@ $('#search-button').on('click', function(e) {
 
 // // Function to clear searchHistory and localstorage
 // // function clearSearchHistory() {
-
-
-// Event listener on search button
-
-
-  // Only run fetchWeather() if #search-input is not empty
 
 
 // Event listener on prev-search button, load selected city current weather and 5 day forecast
