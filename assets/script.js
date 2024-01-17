@@ -78,47 +78,6 @@ $('#search-button').on('click', function(e) {
 
 
 
-// Function to fetch weather data from Openweather API
-
-    // Fetch image data from Pixabay
-
-// Function to display the current weather of a city
-
-
-// Function to display the 5-day forecast of the same city displayed in displayCurrentWeather()
-
-  // Filter data to include only 12:00 forecast          
-
-  // Empty forecast section to prevent duplication
-
-    // Create elements
-
-    
-    // Print elements to page
-
-
-// Function to add searched locations to local storage
-
-
-  // Convert searchTerm to uppercase to prevent search history duplication
-
-
-  // Check localstorage array for searchTerm, if it doesn't exist then push to array
-
-
-// Function to display locations previously searched
-
-  //Add button to clear search history
-
-
-// // Function to clear searchHistory and localstorage
-// // function clearSearchHistory() {
-
-
-// Event listener on prev-search button, load selected city current weather and 5 day forecast
-
-
-// If searchHistory exists in localstorage, render search history to page on page load
 
 
 
