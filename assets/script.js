@@ -2,7 +2,7 @@
 const apiKey = '30ced98bf7b47a3e0d5002206004e34b';
 
 function fetchWeather(search) {
-  let queryURL = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${apiKey}`;
+  let queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${apiKey}`;
   
   fetch(queryURL)
     .then(function (response) {
