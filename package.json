@@ -1,0 +1,8 @@
+{
+  "name": "Olga-weather-app",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": "git@github.com:elismountain/Olga-weather-app.git",
+  "author": "elismountain <echospb@mail.ru>",
+  "license": "MIT"
+}
