@@ -9,9 +9,8 @@ function fetchWeather(search) {
         return response.json()
     })
     .then(function (data) {
-        console.log(`geo data: ${data}`);
-        let latitude = data[0].lat
-        let longitude = data[0].lon
+        let latitude = data[0].lat;
+        let longitude = data[0].lon;
         let forecastURl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
         const h3El = $('#card-title').text(`${data[0].name} (${dayjs().format('MMMM D, YYYY')})`);
 
@@ -20,7 +19,6 @@ function fetchWeather(search) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data);
             displayForecast(data);
         })
     })
@@ -28,7 +26,6 @@ function fetchWeather(search) {
 
 function displayCurrentWeather(currentWeather) {
   const iconUrl = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}.png` 
-  console.log(iconUrl)
   const icon = $('#icon').attr('src', iconUrl);
   const temp = $('#temp').text(`Temperature: ${currentWeather.main.temp} °C`);
   const wind = $('#wind').text(`Wind: ${currentWeather.wind.speed} kph`);
@@ -42,7 +39,6 @@ function displayForecast(data) {
   const fiveDayForecast = currentWeather.filter(function (data) {
     return data.dt_txt.includes('12:00:00');
   });
-  console.log(fiveDayForecast);
 
   $('#forecast').empty();
 
@@ -65,6 +61,18 @@ function displayForecast(data) {
   }
 }
 
+// Function to display locations previously searched
+function renderHistory() {
+  $("#history").empty();
+  let searchHistoryArr = JSON.parse(localStorage.getItem('searchHistory'));
+
+  for (let i = 0; i < searchHistoryArr.length; i++) {
+    const prevSearch = searchHistoryArr[i];
+    const a = $('<button>').addClass('prev-search btn btn-light mt-2').attr('data-name', prevSearch).text(prevSearch);
+    $('#history').append(a);
+  };
+};
+
 // Event listener on search button
 
 $('#search-button').on('click', function(e) {
@@ -75,6 +83,22 @@ $('#search-button').on('click', function(e) {
     fetchWeather(search);  
   };
 });
+
+// Event listener on prev-search button, load selected city current weather and 5 day forecast
+$('#history').on('click', '.prev-search', function() {
+  const selectedBtn = $(this).text()
+  fetchWeather(selectedBtn)
+  $('#today').removeClass('hide')
+});
+
+// If searchHistory exists in localstorage, render search history to page on page load
+$(function() {
+  const isSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+  if (isSearchHistory) {
+    renderHistory();
+  }  
+});
+
 
 
 
